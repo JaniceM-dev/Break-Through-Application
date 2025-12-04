@@ -1,0 +1,12 @@
+{% extends 'main.html'%}
+
+{% block content %}
+<p>ARE YOU SURE YOU WANT TO LOG OUT?</p>
+
+<a href="{% url 'userHome' %}"> GO BACK?</a>
+
+
+<a href="{% url 'logingout' %}"> LOG OUT.</a>
+
+
+{% endblock %}
