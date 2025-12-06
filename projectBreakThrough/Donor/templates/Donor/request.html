@@ -1,0 +1,25 @@
+{% extends 'Donor/main.html'%}
+
+{% block content %}
+
+<h1> REQUEST DETAILS </h1>
+<div>
+
+<div class="fs-6">NAME OF APPLICANT:{{appeal.name}}</div>
+ <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
+<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+
+<a href="{% url 'DonorviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+
+{% if appeal.status != 'donated' %}
+        <a href="{% url 'mpesaPayement' appeal.pk %}">Donate</a>
+    {% else %}
+        <span>Already Donated</span>
+    {% endif %}
+
+<!-- <a href="{% url 'beneficiaryupdateRequest' appeal.id %}" class="text-decoration-none text-light badge bg-warning">Donate</a> -->
+
+
+
+</div>
+{% endblock %}

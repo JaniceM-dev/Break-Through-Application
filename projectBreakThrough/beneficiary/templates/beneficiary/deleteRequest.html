@@ -1,0 +1,16 @@
+{% extends 'beneficiary/main.html'%}
+
+{% block content %}
+
+<h1 class="display-6"> {{user.username}}
+    ARE YOU SURE YOU WANT TO DELETE THIS REQUEST?</h1>
+    <hr>
+<form action="" method="POST">
+{% csrf_token%}
+
+<a href="{% url 'beneficiaryreadRequests'%}" class="text-success fs-6 text-decoration-none">Go Back?</a>
+
+    <input type="submit" value="DELETE">
+</form>
+
+{% endblock %}

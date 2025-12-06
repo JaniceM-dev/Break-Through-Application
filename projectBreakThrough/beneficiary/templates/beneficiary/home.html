@@ -1,7 +1,10 @@
-{% extends 'main.html'%}
+{% extends 'beneficiary/main.html'%}
 
 {% block content %}
 
 <h1> WELCOME TO BREAKTHROUGH! </h1>
-<a href="{% url 'login' %}">LOG IN</a>
+<a href="{% url 'beneficiarylogin' %}">LOG IN</a>
+
+<h1>Dont have an account, <a href="{% url 'beneficiaryregister' %}">Register</a>.</h1>
+
 {% endblock %}

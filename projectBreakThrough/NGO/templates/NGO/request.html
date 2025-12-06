@@ -1,0 +1,45 @@
+{% extends 'NGO/main.html'%}
+
+{% block content %}
+
+<h1> REQUEST DETAILS </h1>
+<div>
+
+<div class="fs-6">NAME OF APPLICANT:{{appeal.name}}</div>
+ <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
+<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+
+<a href="{% url 'NGOviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+
+{% if appeal.status != 'donated' %}
+       <span>AlreadyDonated</span>
+    {% else %}
+        <span>Pending</span>
+<hr>
+     {% endif %}
+
+     {% if not appeal.is_authorized %}
+        <a href="{% url 'NGOauthorizeRequest' appeal.id %}" class="ms-4">Authorize</a>
+    {% else %}
+        <span class="ms-4">Authorized ✅</span>
+    {% endif %}   
+
+
+    {% for donation in donations %}
+{% if donation.appeal.id == appeal.id %}
+    <div class="mt-4">
+        <h3>Donation Details</h3>
+        <p><strong>Donor Name:</strong> {{ donation.user.username }}</p>
+        <p><strong>Amount Donated:</strong> {{ donation.amount }}</p>
+        <p><strong>Date Donated:</strong> {{ donation.created_at }}</p>
+        <hr>
+{% endif %}
+    {% endfor%}
+
+
+
+ 
+
+
+</div>
+{% endblock %}

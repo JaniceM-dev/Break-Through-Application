@@ -1,0 +1,33 @@
+{% extends 'beneficiary/main.html'%}
+
+{% block content %}
+
+
+<h1> Here {{user.username}} Is Your Request. </h1>
+
+<hr>
+
+<div>
+
+<div class="fs-6">NAME: {{appeal.name}}</div>
+ <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
+<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+
+
+<a href="{% url 'beneficiaryreadRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+
+{% if appeal.status != 'donated' %}
+        <span> Pending </span>
+        {% else %}
+        <span>Already Donated</span>
+     {% endif %}
+
+
+<a href="{% url 'beneficiaryupdateRequest' appeal.id %}" class="text-decoration-none text-light badge bg-warning">Update?</a>
+<a href="{% url 'beneficiarydeleteRequest' appeal.id %}" class="text-decoration-none text-light badge bg-danger ">Delete?</a>
+
+<a href="{% url 'beneficiarymakeRequest'%}" class="text-decoration-none text-light badge bg-primary ">Make New Request?</a>
+
+
+</div>
+{% endblock %}

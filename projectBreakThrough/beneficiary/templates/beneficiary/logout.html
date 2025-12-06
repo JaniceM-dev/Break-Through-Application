@@ -1,12 +1,12 @@
-{% extends 'main.html'%}
+{% extends 'beneficiary/main.html'%}
 
 {% block content %}
 <p>ARE YOU SURE YOU WANT TO LOG OUT?</p>
 
-<a href="{% url 'userHome' %}"> GO BACK?</a>
+<a href="{% url 'beneficiaryuserHome' %}"> GO BACK?</a>
 
 
-<a href="{% url 'logingout' %}"> LOG OUT.</a>
+<a href="{% url 'beneficiarylogingout' %}"> LOG OUT.</a>
 
 
 {% endblock %}

@@ -1,10 +1,17 @@
-{% extends 'main.html'%}
+{% extends 'beneficiary/main.html'%}
 
 {% block content %}
 
 
 <h1>BREAKTHROUGH</h1>
-<h2> WELCOME {{user.username}}! </h2>
 
-<a href="{% url 'logout' %}"> LOG OUT?</a>
+<h2> WELCOME {{user.username}}! </h2>
+<h2 class="fs-6 mt-4">WANT TO MAKE A REQUEST?</h2>
+<button class="btn btn-success mb-5"><a href="{% url 'beneficiarymakeRequest'%}" class="text-decoration-none text-light fs-6 " >REQUEST</a></button>
+ <br>
+<button class="btn btn-primary mb-5"><a href="{% url 'beneficiaryreadRequests'%}" class="text-decoration-none text-light fs-6 " > SEE ALL REQUESTS</a>
+</button>
+<br>
+<button class="btn btn-success"><a href="{% url 'beneficiarylogout' %}" class="text-decoration-none text-light"> LOG OUT</a></button> 
+
 {% endblock %}

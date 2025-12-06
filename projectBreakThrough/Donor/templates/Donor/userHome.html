@@ -1,4 +1,4 @@
-{% extends 'main.html'%}
+{% extends 'Donor/main.html'%}
 
 {% block content %}
 
@@ -6,5 +6,9 @@
 <h1>BREAKTHROUGH</h1>
 <h2> WELCOME {{user.username}}! </h2>
 
-<a href="{% url 'logout' %}"> LOG OUT?</a>
+<a href="{% url 'Donorlogout' %}"> LOG OUT?</a>
+
+<a href="{% url 'DonorviewRequests' %}"> SEE REQUESTS. </a>
+
 {% endblock %}
+

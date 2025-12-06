@@ -1,9 +1,10 @@
-{% extends 'main.html'%}
+{% extends 'beneficiary/main.html'%}
 
 {% block content %}
 
 <form action="" method="POST">
-{% csrf_token%}
+
+{% csrf_token %}
 
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
@@ -16,6 +17,6 @@
  
   <button type="submit" class="btn btn-primary">LOG IN</button>
 </form>
-<p> Dont Have an Account? <a href="{% url 'register' %}">REGISTER</a></p>
+<p> Dont Have an Account? <a href="{% url 'beneficiaryregister' %}">REGISTER</a></p>
 
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'beneficiary/main.html'%}
+
+{% block content %}
+
+<h1> HERE ARE ALL YOUR REQUESTS {{user.username}} </h1>
+<hr>
+
+
+
+<div>
+    {% for appeal in appeals %}
+
+<div class="fs-6">NAME: {{appeal.name}}</div>
+ <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
+<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+<a href="{% url 'beneficiaryreadOneRequest' appeal.id %}" class="text-decoration-none text-light badge bg-success ">See More</a>
+<a href="{% url 'beneficiaryupdateRequest' appeal.id %}" class="text-decoration-none text-light badge bg-primary ">Update Request</a>
+<a href="{% url 'beneficiarydeleteRequest' appeal.id %}" class="text-decoration-none text-light badge bg-danger ">Delete Request</a>
+<hr>
+
+{% if appeal.status != 'donated' %}
+        <span> Pending </span>
+        {% else %}
+        <span>Already Donated</span>
+        {% endif %}
+{% if appeal.is_authorized %}
+        <span style="color:green;">Your request has been authorized ✅</span>
+    {% else %}
+        <span style="color:red;">Your request is pending authorization ❌</span>
+    {% endif %}
+{% endfor%}
+
+<a href="{% url 'beneficiarymakeRequest' %}" class="text-success text-decoration-none badge bg-warning text-dark">Make New Request</a>
+
+<a href="{% url 'beneficiaryuserHome'%}" class="text-decoration-none text-light badge bg-success" >Go back?</a>
+</div>
+{% endblock %}

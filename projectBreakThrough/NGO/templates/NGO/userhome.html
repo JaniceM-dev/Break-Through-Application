@@ -1,4 +1,4 @@
-{% extends 'main.html'%}
+{% extends 'NGO/main.html'%}
 
 {% block content %}
 
@@ -6,5 +6,13 @@
 <h1>BREAKTHROUGH</h1>
 <h2> WELCOME {{user.username}}! </h2>
 
-<a href="{% url 'logout' %}"> LOG OUT?</a>
+<h2>
+    <a href="{% url 'NGOviewRequests' %}"> SEE REQUESTS. </a>
+</h2>
+
+ <a href="{% url 'NGOviewDonations' %}"> VIEW DONATIONS. </a>
+
+<a href="{% url 'NGOlogout' %}"> LOG OUT?</a>
+
+<a href="{% url 'NGOviewDonors' %}">VIEW DONORS</a>
 {% endblock %}

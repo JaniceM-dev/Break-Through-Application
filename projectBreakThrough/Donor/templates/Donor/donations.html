@@ -1,0 +1,39 @@
+{% extends 'beneficiary/main.html'%}
+
+{% block content %}
+
+<!-- {% for donation in donations %}
+
+<h1> {{ donation.appeal.name }}</h1>
+<h2>>{{ donation.amount }}</h2>
+<h3>{{ donation.appeal.status }}</h3>
+<h4>{{ donation.created_at }}</h4>
+
+{% endfor %} -->
+<h2>My Donations</h2>
+<table>
+    <tr>
+        <th>Appeal</th>
+        <th>Request</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+    {% for donation in donations %}
+    <tr>
+        <td>{{ donation.appeal.name }}</td>
+        <td>{{donation.appeal.request}}</td>
+        <td>{{ donation.amount }}</td>
+        <td>{{ donation.appeal.status }}</td>
+        <td>{{ donation.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'DonorviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+
+
+
+
+</div>
+{% endblock %}

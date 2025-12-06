@@ -1,0 +1,16 @@
+{% extends 'beneficiary/main.html'%}
+
+{% block content %}
+
+<h1 class="display-5 mb-5">MAKE A REQUEST</h1>
+
+<form action="" method="POST">
+ {% csrf_token%}
+ 
+    {{form.as_p}}
+
+    <button type="submit">REQUEST</button>
+
+</form>
+
+{% endblock %}

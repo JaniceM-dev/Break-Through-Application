@@ -1,0 +1,21 @@
+{% extends 'Donor/main.html'%}
+
+{% block content %}
+
+<h1> Welcome {{user.username}}</h1>
+<h1>THANKYOU FOR CHOOSING BREAKTHROUGH</h1>
+<p>
+    YOUR ACCOUNT IS UNDER REVIEW. PLEASE WAIT FOR APPROVAL FROM THE ADMINISTRATOR.
+</p>
+<p>Here is the status of your Pending Review</p>
+
+  {% if user.profile.is_authorized %}
+    <p style="color:green;"> Your account has been authorized. You can now access all features. ✅</p>
+  <p>Please Press the button below so that You Are Directed to our homepage.</p>
+
+    <a href="{% url 'DonoruserHome' %}" class="btn btn-primary">Go to Homepage</a>
+  {% else %}
+    <p style="color:red;"> Your account is still pending authorization. ❌</p>
+  {% endif %}
+
+{% endblock %}

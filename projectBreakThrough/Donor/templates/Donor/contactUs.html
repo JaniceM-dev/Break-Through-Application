@@ -1,0 +1,15 @@
+{% extends 'Donor/main.html'%}
+
+{% block content %}
+<h1 class="display-5 mb-5">HAVE ANY QUESTIONS? FEEL FREE TO CONTACT US</h1>
+
+<form action="" method="POST">
+ {% csrf_token%}
+ 
+    {{form.as_p}}
+
+    <button type="submit">SUBMIT</button>
+
+</form>
+
+{% endblock %}

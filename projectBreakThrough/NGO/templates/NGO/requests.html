@@ -1,0 +1,29 @@
+{% extends 'NGO/main.html'%}
+
+{% block content %}
+
+<h1> HERE ARE ALL THE REQUESTS {{user.username}} </h1>
+<hr>
+
+    {% for appeal in appeals %}
+
+<div class="fs-6">NAME: {{appeal.name}}</div>
+<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+ 
+<a href="{% url 'NGOviewOneRequest' appeal.id %}">See More</a>
+
+       {% if appeal.status != 'donated' %}
+        <span> Already Donated </span>
+        {% else %}
+        <span>Pending</span>
+        {% endif %}
+ 
+    {% if appeal.is_authorized %}   
+        <span style="color:green;">Authorized ✅</span>
+    {% else %}
+        <span style="color:red;">Pending Authorization  
+    {% endif %}
+<hr>    
+     {% endfor%}
+<a href="{% url 'NGOuserHome' %}">Go back?</a>
+{% endblock %}

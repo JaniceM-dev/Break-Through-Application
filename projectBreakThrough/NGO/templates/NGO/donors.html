@@ -1,0 +1,23 @@
+{% extends 'NGO/main.html'%}
+
+{% block content %}
+
+{% for donor in donors %}
+    <div class="fs-6">DONOR NAME: {{donor.username}}</div>
+    <div class="fs-6">DONATIONS MADE: {{donor.num_donations}}</div>
+   
+  <a href="{% url 'NGOviewDonor' donor.id %}">See More</a>
+     
+
+    {% if donor.profile.is_authorized %}
+        <span class="text-success">Authorised</span>
+    {% else %}
+        <span class="text-danger">Not Authorised</span>
+    {% endif %}
+    
+<hr>
+{% endfor %}
+
+<a href="{% url 'NGOuserHome' %}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+
+{% endblock %}
