@@ -1,0 +1,48 @@
+{% extends 'beneficiary/main.html' %}
+{% block content %}
+
+<div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
+
+  <div class="col-md-9 col-lg-6">
+    <div class="card shadow-lg border-0 rounded-4">
+
+      <div class="card-body p-4 p-md-5">
+
+        <div class="text-center mb-4">
+          <h2 class="fw-bold textpink mb-2">
+            Have any questions?
+          </h2>
+          <p class="text-muted">
+            Feel free to contact us
+          </p>
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            {{ form.email }}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Message</label>
+            {{ form.message }}
+          </div>
+
+          <button type="submit" class="btn bgpink btn-outline-dark text-light   mb-3 w-100 py-2 rounded-pill">
+            Submit
+          </button>
+        <a href="{% url 'beneficiaryuserHome' %}" 
+             class="btn bgpink btn-outline-dark text-light w-100 py-2  rounded-pill fs-6 ">
+            ← Go Back to Your Dashboard
+          </a>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'NGO/main.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold text-center mt-5 textpink display-6">All Donors</h2>
+
+<div class="container">
+    <div class="row">
+        {% for donor in donors %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 rounded-4">
+                
+                <div class="card-body">
+
+                    <h5 class="card-title fw-bold text-dark">
+                        {{ donor.username }}
+                    </h5>
+
+                    <p class="mb-1">
+                        <strong>Donations Made:</strong> {{ donor.num_donations }}
+                    </p>
+
+                    {% if donor.profile.is_authorized %}
+                        <span class="badge bg-success">Authorised</span>
+                    {% else %}
+                        <span class="badge bg-danger">Not Authorised</span>
+                    {% endif %}
+
+                    <hr>
+
+                    <a href="{% url 'NGOviewDonor' donor.id %}" 
+                       class="btn btn-outline-dark bgpink text-light rounded-pill w-40">
+                        See More
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-1 mb-3 d-flex align-items-end ">
+        <a href="{% url 'NGOuserHome' %}" 
+           class="btn bgpurple btn-outline-dark text-light rounded-3 px-4">
+           Go Back
+        </a>
+    </div>
+</div>
+
+{% endblock %}

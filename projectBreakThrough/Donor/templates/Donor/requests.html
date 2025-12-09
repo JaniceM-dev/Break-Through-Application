@@ -1,0 +1,75 @@
+{% extends 'Donor/main.html' %}
+
+{% block content %}
+
+<div class="container my-4 pt-3">
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+            <h2 class="fw-bold text-center mb-4">
+            ❤️ Here Are The Requests Needing Your Help {{ user.username }} ❤️
+            </h2>
+
+            <p class="text-center text-muted mb-4 fs-5">
+                Your kindness can change someone's story today.  
+                Read through the requests below and support where you feel moved.
+                Rest Assured that all these requests have been approved and all they need is your support.
+            </p>
+
+            <hr>
+
+            {% for appeal in appeals %}
+                <div class="p-3 mb-3 border rounded-3 bg-light">
+
+                    <div class="fw-bold  ">Name:
+                        <span class="textpink ">{{ appeal.user.username }}</span>
+                    </div>
+
+                    <div class="mt-2 fw-bold">Request:</div>
+                    <p class="mb-2">{{ appeal.request }}</p>
+
+                    <div class="d-flex gap-2">
+
+                        <a href="{% url 'DonorviewOneRequest' appeal.id %}"
+                           class="btn bgpurple btn-outline-secondary text-light btn-sm rounded-pill px-3">
+                            See More
+                        </a>
+
+                        {% if appeal.status != 'donated' %}
+                            <a href="{% url 'mpesaPayement' appeal.pk %}"
+                               class="btn bgplum  text-light btn-outline-dark btn-sm rounded-pill px-3">
+                                Donate
+                            </a>
+                        {% else %}
+                            <span class="badge bg-secondary fs-6 ">Already Donated</span>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            {% empty %}
+
+                 <h2 class="fw-bold text-center mb-4">
+                ❤️ Hello, {{ user.username }}
+                 </h2>
+
+
+                <p class="text-center text-muted fs-5">There are no requests available at the moment. Please Keep checking for any updates. Thankyou </p>
+
+            {% endfor %}
+
+            <div class="text-center mt-4">
+                <a href="{% url 'DonoruserHome' %}" class="btn bgpink text-light btn-outline-dark px-4 rounded-pill">
+                    Go Back
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+

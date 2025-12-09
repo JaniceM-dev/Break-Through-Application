@@ -1,0 +1,119 @@
+{% extends 'Donor/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<section id="home" class="min-vh-100 d-flex align-items-center position-relative overflow-hidden">
+
+  
+  <div class="position-absolute top-0 start-0 w-100 h-100 bgpink opacity-50"></div>
+
+ 
+  <div class="container position-relative text-light py-5">
+    <div class="row">
+      <div class="col-lg-8">
+
+        <h1 class="display-2 fw-bold d-flex align-items-center gap-3 mb-4">
+          <img src="{% static 'logo.svg' %}" alt="Logo" width="70">
+          BREAKTHROUGH
+        </h1>
+
+        <h2 class="fw-light display-6 mb-4">
+          Where we change lives and build smiles.
+        </h2>
+
+        <p class="lead fs-5 opacity-90">
+          We connect people with accredited donors and provide the assistance
+          they need to achieve their dreams and life goals. Join us today and
+          become part of a community that creates real change.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mt-5">
+          <a href="{% url 'Donorregister' %}" class="btn btn-light btn-lg rounded-pill px-5">
+            Register
+          </a>
+
+          <a href="{% url 'Donorlogin' %}"
+             class="btn btn-outline-light btn-lg rounded-pill px-5">
+            Log In
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5 textpink">What We Do</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0 rounded-4 p-4">
+          <h4 class="fw-semibold">Support</h4>
+          <p>We connect people with verified donors and provide real assistance.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0 rounded-4 p-4">
+          <h4 class="fw-semibold">Empower</h4>
+          <p>We help people move closer to their dreams and goals.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow border-0 rounded-4 p-4">
+          <h4 class="fw-semibold">Impact</h4>
+          <p>We measure success by lives changed and smiles created.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5 textpink">Success Stories</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="bg-white p-4 rounded-4 shadow-sm">
+          <p class="fst-italic">
+            "Breakthrough gave me hope when I needed it the most."
+          </p>
+          <h6 class="fw-bold mt-3">— Beneficiary</h6>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="bg-white p-4 rounded-4 shadow-sm">
+          <p class="fst-italic">
+            "This platform truly changes lives."
+          </p>
+          <h6 class="fw-bold mt-3">— Donor</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5 bgpink text-white text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Join Us Today</h2>
+    <p class="lead mb-4">Be part of something meaningful and make a real difference.</p>
+
+    <a href="{% url 'Donorregister' %}" class="btn btn-light btn-lg rounded-pill px-5">
+      Get Started
+    </a>
+  </div>
+</section>
+
+{% endblock %}
+ 
+ 
+ 
+ 
+ 

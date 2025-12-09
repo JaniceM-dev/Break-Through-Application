@@ -1,0 +1,96 @@
+{% extends 'beneficiary/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+
+  <h1 class="fw-bold mb-4 textpurple">
+    Here  Is Your Request {{ user.username }} 💖
+  </h1>
+ 
+  <hr class="mb-4">
+
+  
+  <div class="card shadow-sm border-0 rounded-4 p-4">
+
+    <div class="mb-3 fs-5">
+      <strong>NAME:</strong> {{ user.username }}
+    </div>
+
+    <div class="mb-3 fs-5">
+      <strong>ID NUMBER:</strong> {{ appeal.idNumber }}
+    </div>
+
+    <div class="mb-4">
+      <strong class="fs-5">REQUEST:</strong>
+      <p class="lead mt-2">
+        {{ appeal.request }}
+      </p>
+    </div>
+
+ 
+    <div class="mb-3">
+      {% if appeal.status != 'donated' %}
+        <span class="badge bgplum text-dark px-3 py-2 rounded-pill">
+          Pending Donation
+        </span>
+      {% else %}
+        <span class="badge bg-success px-3 py-2 rounded-pill">
+          Donated
+        </span>
+      {% endif %}
+    </div>
+
+    
+    <div class="mb-4">
+
+      {% if appeal.is_authorized %}
+        <span class="badge bg-success px-3 py-2 rounded-pill">
+          ✅ Authorized. 
+        </span>
+      {% else %}
+        <span class="badge bgpurple px-3 py-2 rounded-pill">
+        Pending Authorization
+        </span>
+
+        <div class="alert alert-light border mt-3 rounded-3 small text-muted">
+          "We have received your request  {{user.username}} and we are reviewing it with care. You can
+        trust that we are fully committed to assisting you.Please wait for authorization from
+        the administration. Thank you for your patience. Kindly keep checking to
+        see the status of your request. Thank you for choosing Breakthrough."
+        </div>
+      {% endif %}
+
+    </div>
+
+   <div class="d-flex flex-wrap gap-3 mt-4">
+
+  <a href="{% url 'beneficiaryreadRequests' %}"
+     class="btn btn-outline-dark bgpurple text-light rounded-pill px-4 py-2 ">
+    Go Back
+  </a>
+
+  <a href="{% url 'beneficiaryupdateRequest' appeal.id %}"
+     class="btn  btn-outline-dark bgpink rounded-pill text-light px-4 py-2 ">
+    Update
+  </a>
+
+  <a href="{% url 'beneficiarydeleteRequest' appeal.id %}"
+     class="btn btn-outline-dark bgpink rounded-pill text-light px-4 py-2 ">
+    Delete
+  </a>
+
+  <a href="{% url 'beneficiarymakeRequest' %}"
+     class="btn btn-outline-dark bgpink rounded-pill text-light px-4 py-2 ">
+    Make New Request
+  </a>
+
+</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

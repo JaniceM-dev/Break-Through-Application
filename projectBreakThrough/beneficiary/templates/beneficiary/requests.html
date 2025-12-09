@@ -1,0 +1,98 @@
+{% extends 'beneficiary/main.html' %} {% block content %}
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold textpink">Your Requests {{user.username}} 💖</h1>
+  </div>
+
+  {% for appeal in appeals %}
+  <div class="card shadow-sm border-0 rounded-4 mb-4">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start flex-wrap">
+        <div>
+          <h5 class="fw-bold textpink mb-2 fs-4">Request Details</h5>
+          <p class="mb-1"><strong>Name:</strong> {{ user.username }}</p>
+          <p class="mb-1"><strong>ID Number:</strong> {{ appeal.idNumber }}</p>
+          <p class="mb-1"><strong>Email:</strong> {{ appeal.user.email }}</p>
+        </div>
+
+        <div class="text-end mt-2 mt-md-0">
+          {% if appeal.status == 'donated' %}
+          <span class="badge bg-success px-3 py-2 rounded-pill">Donated</span>
+          {% else %}
+          <span class="badge bgplum text-dark px-3 py-2 rounded-pill"
+            >Pending Donation</span
+          >
+          {% endif %} {% if appeal.is_authorized %}
+          <span
+            class="badge bg-success px-3 py-2 rounded-pill mt-1 d-inline-block"
+            >Authorized ✅</span
+          >
+          {% else %}
+          <span
+            class="badge bgpurple px-3 py-2 rounded-pill mt-1 d-inline-block"
+            >Pending Authorization
+          </span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <p class="fw-semibold mb-1">Request Message</p>
+        <p class="text-muted mb-0">{{ appeal.request }}</p>
+      </div>
+
+      {% if not appeal.is_authorized %}
+      <div class="alert alert-light border mt-4 small text-muted rounded-3">
+        "We have received your request  {{user.username}} and we are reviewing it with care. You can
+        trust that we are fully committed to assisting you.Please wait for authorization from
+        the administration. Thank you for your patience. Kindly keep checking to
+        see the status of your request. Thank you for choosing Breakthrough."
+      </div>
+      {% endif %}
+
+      <div class="d-flex gap-2 flex-wrap mt-4">
+        <a
+          href="{% url 'beneficiaryreadOneRequest' appeal.id %}"
+          class="btn btn-outline-dark bgpurple btn-sm rounded-pill text-light px-3"
+          >See More</a
+        >
+
+        <a
+          href="{% url 'beneficiaryupdateRequest' appeal.id %}"
+          class="btn btn-outline-dark bgpurple btn-sm rounded-pill px-3 text-light"
+          >Update</a
+        >
+
+        <a
+          href="{% url 'beneficiarydeleteRequest' appeal.id %}"
+          class="btn btn-outline-danger bgpurple btn-sm rounded-pill px-3 text-light"
+          >Delete</a
+        >
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="text-center text-muted">
+    <p>You have not made any requests yet.</p>
+  </div>
+  {% endfor %}
+
+  <div class="d-flex justify-content-center gap-3 mt-5 flex-wrap">
+    <a
+      href="{% url 'beneficiarymakeRequest' %}"
+      class="btn bgpink btn-outline-dark text-light rounded-pill px-4 py-2"
+    >
+      + Make New Request
+    </a>
+
+    <a
+      href="{% url 'beneficiaryuserHome' %}"
+      class="btn bgpink btn-outline-dark text-light rounded-pill px-4 py-2"
+    >
+      Go Back
+    </a>
+  </div>
+</div>
+
+{% endblock %}

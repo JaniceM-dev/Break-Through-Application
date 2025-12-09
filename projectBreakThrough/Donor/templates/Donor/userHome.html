@@ -1,0 +1,84 @@
+{% extends 'Donor/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+ 
+  <div class="text-center mb-4">
+    <h1 class="fw-bold" style="color:#aa336a;"> <img src="{% static 'logo.svg' %}" alt="" width="50" class="me-1">BREAKTHROUGH</h1>
+     <h3 class="mt-2 me-1 ms-4">Welcome, <span class="fw-bold">{{ user.username }}</span>! 💖 </h3>
+     
+      <p class="lead">
+          Thank you for being part of <strong>Breakthrough</strong> —  
+          your kindness and generosity help change lives every single day.
+      </p>
+      <p class="mb-4">
+         You are now a verified donor. You can review requests that need your support, check donations you've already made,
+          or explore more about our mission.
+      </p>
+  </div>
+
+
+  <div class="row g-4 justify-content-center">
+
+     
+      <div class="col-md-4">
+          <div class="card shadow-sm border-0 h-100 text-center p-4">
+              <div class="card-body">
+                  <h4 class="card-title fw-bold mb-3">Requests Needing Support</h4>
+                  <p class="card-text">
+                      Explore appeals from individuals and families who need a helping hand.
+                  </p>
+                  <a href="{% url 'DonorviewRequests' %}" class="btn bgpink text-light btn-outline-dark rounded-pill px-4">
+                      View Requests
+                  </a>
+              </div>
+          </div>
+      </div>
+
+     
+      <div class="col-md-4">
+          <div class="card shadow-sm border-0 h-100 text-center p-4">
+              <div class="card-body">
+                  <h4 class="card-title fw-bold mb-3">Your Donation History</h4>
+                  <p class="card-text">
+                      View your impact and see how your contributions have touched lives.
+                  </p>
+                  <a href="{% url 'donorDonationHistory' %}" class="btn bgpink text-light btn-outline-dark rounded-pill mt-4 px-4">
+                      My Donations
+                  </a>
+              </div>
+          </div>
+      </div>
+
+    
+      <div class="col-md-4">
+          <div class="card shadow-sm border-0 h-100 text-center p-4">
+              <div class="card-body">
+                  <h4 class="card-title fw-bold mb-3">About Breakthrough</h4>
+                  <p class="card-text">
+                      Learn more about who we are, our mission, and the lives we are improving.
+                  </p>
+                  <a href="{% url 'donoraboutUs' %}" class="btn bgpink text-light btn-outline-dark rounded-pill px-4 text-white mt-4">
+                      About Us
+                  </a>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+
+  <div class="mt-5 p-4 rounded-3 shadow-sm bg-light text-center">
+      <h4 class="fw-bold">🌍 Your generosity creates real change.</h4>
+      <p class="mt-2 mb-0 ">
+          Every donation — no matter the size — brings hope to someone in need.
+          Thank you for choosing compassion. ❤️
+      </p>
+  </div>
+
+</div>
+
+{% endblock %}

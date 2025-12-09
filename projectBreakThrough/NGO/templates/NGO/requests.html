@@ -1,0 +1,67 @@
+{% extends 'NGO/main.html'%}
+
+{% block content %}
+
+<div class="container mt-4 mb-3 pt-3">
+
+    <h2 class="fw-bold mb-4 text-center textpink ">
+        ALL THE REQUESTS FROM BENEFICIARIES
+    </h2>
+
+   
+    <div class="alert alert-success text-center fw-semibold shadow-sm">
+        Thank you for managing and supporting the donations.  
+        Your oversight helps ensure every contribution reaches those in need!
+    </div>
+
+    <div class="row g-4 mt-3 ">
+
+        {% for appeal in appeals %}
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 p-3" style="border-radius: 16px;">
+                
+                <h5 class="fw-bold">NAME: {{ appeal.user.username }}</h5>
+                <h5 class="fw-bold">ID NUMBER : {{ appeal.idNumber }}</h5>
+                
+                <p class="text-muted mb-1">REQUEST:</p>
+                <p class="small">{{ appeal.request }}</p>
+
+
+                <div class="mt-2">
+                    {% if appeal.status == 'donated' %}
+                        <span class="badge bg-secondary">Already Donated</span>
+                    {% else %}
+                        <span class="badge bgplum text-dark rounded-pill">Pending Donation</span>
+                    {% endif %}
+
+                    {% if appeal.is_authorized %}
+                        <span class="badge bg-success ms-2">Authorized</span>
+                    {% else %}
+                        <span class="badge bgpurple  rounded-pill mt-1 d-inline-block ms-2">Pending Authorization</span>
+                    {% endif %}
+                </div>
+
+                <a href="{% url 'NGOviewOneRequest' appeal.id %}" 
+   class="btn btn-sm btn-outline-dark bgpink text-light rounded-pill mb-2 mt-3 w-40 px-3 col-md-3">
+    See More
+</a>
+
+            </div>
+        </div>
+
+        {% empty %}
+           
+            <div class="alert alert-info text-center fw-semibold shadow-sm">
+                No donations have been made yet — but your support will help guide future donations.
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-4 d-flex align-items-end">
+        <a href="{% url 'NGOuserHome' %}" class="btn btn-outline-dark bgpurple text-light">Go back</a>
+    </div>
+
+</div>
+
+{% endblock %}

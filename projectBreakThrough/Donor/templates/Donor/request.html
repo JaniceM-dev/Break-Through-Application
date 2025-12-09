@@ -1,0 +1,46 @@
+{% extends 'Donor/main.html' %}
+
+{% block content %}
+
+<div class="container mt-4 pt-2">
+
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-5">
+
+        <h2 class="fw-bold mb-4 textpink text-uppercase">
+            Request Details
+        </h2>
+
+        <div class="mb-3">
+            <label class="fw-bold textpurple">Name of Applicant:  <div class="textpink">{{ appeal.user.username }}</div> </label>
+         
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold textpurple">Request:</label>
+            <p class="fs-6 textpurple">{{ appeal.request }}</p>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+
+            <a href="{% url 'DonorviewRequests' %}"
+               class="btn bgpurple text-light btn-outline-dark px-4 rounded-pill d-flex align-items-end ">
+                ← Go Back
+            </a>
+
+            {% if appeal.status != 'donated' %}
+                <a href="{% url 'mpesaPayement' appeal.pk %}"
+                   class="btn bgplum text-light btn-outline-dark  px-4 rounded-pill">
+                    Donate
+                </a>
+            {% else %}
+                <span class="badge  bg-secondary rounded-pill fs-6 px-3 py-2">
+                    Already Donated
+                </span>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

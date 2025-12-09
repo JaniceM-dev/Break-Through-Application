@@ -1,0 +1,51 @@
+{% extends 'NGO/main.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5 ">
+    <h1 class="mb-4 textpink">HERE ARE THE DONATED REQUESTS AND THEIR DONORS</h1>
+    <div class="row">
+        {% for donation in donations %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm rounded-4 border-0" style="background-color: #ffe1ec;">
+                <div class="card-body">
+
+                    <h5 class="card-title text-dark fw-bold mb-3">
+                        Donation #{{ forloop.counter }}
+                    </h5>
+
+                    <p class="mb-1">
+                        <strong>Donor:</strong> {{ donation.user.username }}
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Beneficiary:</strong> {{ donation.appeal.user.username }}
+                    </p>
+                  
+                    <p class="mb-1 text-muted">
+                        <strong>Request:</strong> <br> {{ donation.appeal.request }}
+                    </p>
+
+
+                    <p class="mb-1">
+                        <strong>Amount Donated:</strong> {{ donation.amount }}
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Date Donated:</strong> {{ donation.created_at }}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    
+    <div class="text-center mt-4 d-flex align-items-end  ">
+        <a href="{% url 'NGOuserHome' %}" class="btn btn-outline-dark bgpurple text-light">Go back</a>
+    </div>
+
+    </div>
+</div>
+
+{% endblock %}
