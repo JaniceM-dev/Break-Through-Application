@@ -15,5 +15,6 @@ urlpatterns = [
     path('viewDonors', views.viewDonors, name = 'NGOviewDonors'),
     path('viewDonor/<str:pk>' , views.viewDonor, name = 'NGOviewDonor'),
     path('authorizeRequest/<str:pk>' , views.authorizeRequest, name = 'NGOauthorizeRequest'),
-    path('authorizeDonor/<str:pk>' , views.authorizeDonor, name = 'NGOauthorizeDonor')
+    path('authorizeDonor/<str:pk>' , views.authorizeDonor, name = 'NGOauthorizeDonor'),
+    path('aboutUs' , views.aboutUs , name = 'NGOaboutUs')
 ]

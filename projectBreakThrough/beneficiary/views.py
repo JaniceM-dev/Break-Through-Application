@@ -109,7 +109,7 @@ from django.contrib.auth.decorators import login_required
 def readRequests(request):
     appeals = Appeal.objects.filter(user=request.user)  
     context = {'appeals': appeals}
-    return render(request, 'beneficiary/Requests.html', context)
+    return render(request, 'beneficiary/requests.html', context)
 
 @login_required(login_url='beneficiarylogin')
 def readOneRequest(request, pk):
@@ -119,7 +119,7 @@ def readOneRequest(request, pk):
         return redirect('beneficiaryreadRequests') 
 
     context = {'appeal': appeal}
-    return render(request, 'beneficiary/Request.html', context)
+    return render(request, 'beneficiary/request.html', context)
 
 
 @login_required(login_url='beneficiarylogin')
@@ -172,3 +172,6 @@ def contactUs(request):
     
     context = {'form': form}
     return render(request, 'beneficiary/contactUs.html', context)
+
+def aboutUs(request):
+    return render (request, 'beneficiary/AboutUs.html')

@@ -1,22 +1,58 @@
-{% extends 'beneficiary/main.html'%}
-
+{% extends 'beneficiary/main.html' %}
 {% block content %}
 
-<form action="" method="POST">
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="col-md-6 col-lg-4">
 
-{% csrf_token %}
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4 p-md-5">
 
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name= 'username' placeholder= "Enter Username">
+        <h2 class="text-center fw-bold mb-4 textpink">Welcome Back</h2>
+        <p class="text-center text-muted mb-4">Log in to your account</p>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="username" class="form-label fw-semibold">Username</label>
+            <input 
+              type="text" 
+              class="form-control rounded-pill py-2 px-3" 
+              id="username" 
+              name="username" 
+              placeholder="Enter username"
+              required
+            >
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label fw-semibold">Password</label>
+            <input 
+              type="password" 
+              class="form-control rounded-pill py-2 px-3" 
+              id="password" 
+              name="password" 
+              placeholder="Enter password"
+              required
+            >
+          </div>
+
+          <button type="submit" class="btn  bgpink w-100 py-2 rounded-pill mt-3">
+            LOG IN
+          </button>
+        </form>
+
+        <p class="text-center mt-4 mb-0">
+          Don't have an account?
+          <a href="{% url 'beneficiaryregister' %}" class="textpink fw-semibold text-decoration-none">
+            Register
+          </a>
+        </p>
+
+      </div>
+    </div>
+
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-  </div>
- 
-  <button type="submit" class="btn btn-primary">LOG IN</button>
-</form>
-<p> Dont Have an Account? <a href="{% url 'beneficiaryregister' %}">REGISTER</a></p>
+</div>
 
 {% endblock %}

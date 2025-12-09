@@ -1,45 +1,66 @@
-{% extends 'NGO/main.html'%}
+{% extends 'NGO/main.html' %}
 
 {% block content %}
 
-<h1> REQUEST DETAILS </h1>
-<div>
+<div class="container mt-4">
 
-<div class="fs-6">NAME OF APPLICANT:{{appeal.name}}</div>
- <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
-<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+    <h2 class="fw-bold mb-4 textpink">Request Details</h2>
 
-<a href="{% url 'NGOviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+    <div class="card shadow-sm border-0 p-4 mb-4" style="border-radius: 16px;">
 
-{% if appeal.status != 'donated' %}
-       <span>AlreadyDonated</span>
-    {% else %}
-        <span>Pending</span>
-<hr>
-     {% endif %}
+        <p class="mb-1"><strong>NAME OF APPLICANT:</strong> {{ appeal.user.username }}</p>
+        <p class="mb-1"><strong>ID NUMBER:</strong> {{ appeal.idNumber }}</p>
+        <p class="mb-1"><strong>PHONE NUMBER:</strong> {{ appeal.PhoneNumber}}</p>
+        <p class="mb-1"><strong>EMAIL:</strong> {{ appeal.email }}</p>
 
-     {% if not appeal.is_authorized %}
-        <a href="{% url 'NGOauthorizeRequest' appeal.id %}" class="ms-4">Authorize</a>
-    {% else %}
-        <span class="ms-4">Authorized ✅</span>
-    {% endif %}   
+        <p class="mt-3 mb-1"><strong>REQUEST:</strong></p>
+        <p class="small">{{ appeal.request }}</p>
 
+        <div class="d-flex align-items-center mt-3">
+
+            <a href="{% url 'NGOviewRequests' %}" 
+               class="btn btn-sm bgpink text-light btn-outline-dark rounded-pill px-3 me-3">
+                Go Back
+            </a>
+
+            {% if appeal.status == 'donated' %}
+                <span class="badge bg-success">Already Donated</span>
+            {% else %}
+                <span class="badge bgplum text-dark rounded-pill">Pending Donation</span>
+            {% endif %}
+
+            {% if appeal.is_authorized %}
+                <span class="badge bg-success ms-2">Authorized ✅</span>
+            {% else %}
+                <a href="{% url 'NGOauthorizeRequest' appeal.id %}" 
+                   class="btn bgpurple text-light btn-outline-success rounded-pill px-4 me-2 ms-2">
+                    Authorize
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+   
+    <h4 class="fw-bold mb-3 textpink">Donation Details</h4>
 
     {% for donation in donations %}
-{% if donation.appeal.id == appeal.id %}
-    <div class="mt-4">
-        <h3>Donation Details</h3>
-        <p><strong>Donor Name:</strong> {{ donation.user.username }}</p>
-        <p><strong>Amount Donated:</strong> {{ donation.amount }}</p>
-        <p><strong>Date Donated:</strong> {{ donation.created_at }}</p>
-        <hr>
-{% endif %}
-    {% endfor%}
+        {% if donation.appeal.id == appeal.id %}
+            <div class="card shadow-sm mb-3 p-3 border-0" style="border-radius: 14px;">
 
+                <p class="mb-1"><strong>Donor Name:</strong> {{ donation.user.username }}</p>
+                <p class="mb-1"><strong>Amount Donated:</strong> {{ donation.amount }}</p>
+                <p class="mb-1"><strong>Date Donated:</strong> {{ donation.created_at }}</p>
 
-
- 
-
+            </div>
+        {% endif %}
+    {% empty %}
+        <div class="alert alert-info text-center fw-semibold shadow-sm">
+            No donations have been made for this request yet.
+        </div>
+    {% endfor %}
 
 </div>
+
 {% endblock %}

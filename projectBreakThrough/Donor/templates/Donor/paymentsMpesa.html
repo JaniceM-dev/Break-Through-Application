@@ -1,25 +1,60 @@
-{% extends 'Donor/main.html'%}
+{% extends 'Donor/main.html' %}
 
 {% block content %}
-<h2> DONATE HERE. </h2>
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
-  <div class="mb-3">
-    <label for="phoneNumber" class="form-label">Phone Number</label>
-    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
-    <div id="phoneNumberHelp" class="form-text">We will send you an Mpesa Prompt,please enter you Number Here.</div>
-  </div>
-  <div class="mb-3">
-    <label for="amount" class="form-label">Amount</label>
-    <input type="text" class="form-control" id="amount" name="amount">
-  </div>
-  
-  <button type="submit" class="btn btn-primary">DONATE</button>
-</form>
 
-<!-- <div class="container bg-success text-dark">  </div>
-{{response}} -->
+<div class="container mt-4 mb-4 pt-3 d-flex justify-content-center">
+
+    <div class="card shadow-lg p-4 border-0 col-md-6 col-lg-5" style="border-radius: 18px;">
+        <h2 class="text-center mb-4 fw-bold textpink">Donate to Help</h2>
+
+        <p class="text-muted text-center mb-4">
+            Your support makes a real difference.  
+            Please enter your details below to complete your donation securely.
+        </p>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label fw-semibold">Phone Number</label>
+                <input 
+                    type="tel" 
+                    class="form-control form-control-lg" 
+                    id="phoneNumber" 
+                    name="phoneNumber"
+                    placeholder="e.g. 07XX XXX XXX"
+                    required
+                >
+                <div class="form-text">
+                    We will send you an M-Pesa prompt. Ensure your number is active.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="amount" class="form-label fw-semibold">Amount</label>
+                <input 
+                    type="number" 
+                    class="form-control form-control-lg" 
+                    id="amount" 
+                    name="amount"
+                    placeholder="Enter amount...."
+                    required
+                >
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn bgpink btn-outline-dark text-light rounded-pill btn-lg fw-bold">
+                    DONATE
+                </button>
+            </div>
+             <div class="d-grid mt-2">
+              <a href="{% url 'DonorviewRequests' %}" class="btn bgpurple btn-outline-dark text-light rounded-pill btn-lg fs-6">GO BACK</a>
+               
+            </div>
+        </form>
+
+    </div>
 
 </div>
+
 {% endblock %}

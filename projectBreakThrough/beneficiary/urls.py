@@ -13,5 +13,6 @@ urlpatterns = [
     path('MyRequest/<str:pk>' , views.readOneRequest , name = 'beneficiaryreadOneRequest'),
     path('updateRequest/<str:pk>' , views.updateRequest , name = 'beneficiaryupdateRequest') ,
     path('deleteRequest/<str:pk>' , views.deleteRequest , name = 'beneficiarydeleteRequest') ,
-    path('contactUs' , views.contactUs , name = 'beneficiarycontactUs') 
+    path('contactUs' , views.contactUs , name = 'beneficiarycontactUs') ,
+    path('aboutUs' , views.aboutUs , name = 'beneficiaryaboutUs') 
 ]

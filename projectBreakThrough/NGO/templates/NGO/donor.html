@@ -2,23 +2,49 @@
 
 {% block content %}
 
-<h1> Here are the details of {{donor.username}} </h1>
-<h1> DONOR NAME : {{donor.username}}</h1>
-<h1> DONATIONS MADE : {{donor.num_donations}}</h1>
-  
+<div class="container mt-4 pt-3">
 
-    {% if donor.profile.is_authorized %}
-        <span class="text-success">Authorised</span>
-    {% else %}
-        <span class="text-danger">Not Authorised</span>
-    {% endif %}
+    <div class="card shadow-lg border-0 rounded-4 p-4">
 
-    {% if not donor.profile.is_authorized %}
-        <a href="{% url 'NGOauthorizeDonor' donor.id %}">Approve</a>
-    {% endif %}
-   
-<a href="{% url 'NGOviewDonors' %}">Go Back?</a>
+        <h2 class="fw-bold mb-3 text-center textpink ">
+            Here are the details of {{ donor.username }}
+        </h2>
 
+        <div class="card-body">
 
+            <p class="fs-5">
+                <strong>DONOR NAME :</strong> {{ donor.username }}
+            </p>
+
+            <p class="fs-5">
+                <strong>DONOR EMAIL :</strong> {{ donor.email }}
+            </p>
+
+            <p class="fs-5">
+                <strong>Status :</strong>
+                {% if donor.profile.is_authorized %}
+                    <span class="text-success fw-semibold">Authorised</span>
+                {% else %}
+                    <span class="text-danger fw-semibold">Not Authorised</span>
+                {% endif %}
+            </p>
+
+            {% if not donor.profile.is_authorized %}
+                <a href="{% url 'NGOauthorizeDonor' donor.id %}"
+                   class="btn btn-success rounded-pill px-4 me-2">
+                    Approve
+                </a>
+            {% endif %}
+
+            <a href="{% url 'NGOviewDonors' %}"
+               class="btn  bgpurple text-light btn-outline-secondary rounded-pill px-4">
+                Go Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -1,21 +1,68 @@
-{% extends 'Donor/main.html'%}
+{% extends 'Donor/main.html' %}
 
 {% block content %}
 
-<h1> Welcome {{user.username}}</h1>
-<h1>THANKYOU FOR CHOOSING BREAKTHROUGH</h1>
-<p>
-    YOUR ACCOUNT IS UNDER REVIEW. PLEASE WAIT FOR APPROVAL FROM THE ADMINISTRATOR.
-</p>
-<p>Here is the status of your Pending Review</p>
+<div class="d-flex justify-content-center mt-5 mb-4">
+  <div class="card shadow-lg p-4 rounded-4" style="max-width: 750px; width: 100%; border: none;">
 
-  {% if user.profile.is_authorized %}
-    <p style="color:green;"> Your account has been authorized. You can now access all features. ✅</p>
-  <p>Please Press the button below so that You Are Directed to our homepage.</p>
+    <div class="text-center mb-3">
+      <h2 class="fw-bold">Welcome, {{ user.username }}</h2>
+      <h4 class="text-secondary">Thank you for choosing <span class="textpink">Breakthrough</span></h4>
+    </div>
 
-    <a href="{% url 'DonoruserHome' %}" class="btn btn-primary">Go to Homepage</a>
-  {% else %}
-    <p style="color:red;"> Your account is still pending authorization. ❌</p>
-  {% endif %}
+    <p class="text-center text-muted fs-5">
+      We're excited to have you here!  
+      Your account is currently <strong>under review</strong> as we verify your details.
+      This helps keep our donor community safe and trustworthy. 💛
+    </p>
+
+    <hr>
+
+    <h5 class="fw-semibold mt-3">Your Account Review Status</h5>
+
+    {% if user.profile.is_authorized %}
+        
+        <div class="alert alert-success d-flex align-items-center gap-2 rounded-3 mt-3">
+          <span class="fw-bold">Your account has been authorized!</span>
+          <span>✅</span>
+        </div>
+
+        <p class="mt-3">
+          Thank you for your patience. Everything is now set, and you can start exploring
+          donation opportunities that make a real difference.
+        </p>
+
+        <div class="text-center mt-4">
+          <a href="{% url 'DonoruserHome' %}" class="btn btn-primary px-4 py-2 rounded-pill">
+            Go to Homepage
+          </a>
+        </div>
+
+    {% else %}
+        
+        <div class="alert alert-warning d-flex align-items-center gap-2 rounded-3 mt-3">
+          <span class="fw-bold">Your account is still pending authorization.</span>
+          <span>⏳</span>
+        </div>
+
+        <p class="text-muted mt-3">
+          Our team is reviewing your information. This usually takes a short time.
+          We'll notify you once your account has been approved.
+        </p>
+
+        <p class="text-muted">
+          In the meantime, feel free to explore our About Us section and learn more about us.
+        </p>
+        <div class="text-center mt-4">
+                <a href="{% url 'donoraboutUs' %}" 
+                   class="btn bgpink text-light btn-outline-dark px-4 py-2 rounded-pill shadow-sm">
+                    Learn More About Us
+                </a>
+            </div>
+
+    {% endif %}
+
+  </div>
+</div>
 
 {% endblock %}

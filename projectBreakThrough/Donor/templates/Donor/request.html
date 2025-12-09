@@ -1,25 +1,46 @@
-{% extends 'Donor/main.html'%}
+{% extends 'Donor/main.html' %}
 
 {% block content %}
 
-<h1> REQUEST DETAILS </h1>
-<div>
+<div class="container mt-4 pt-2">
 
-<div class="fs-6">NAME OF APPLICANT:{{appeal.name}}</div>
- <div class="fs-6">ID NUMBER: {{appeal.idNumber}}</div>
-<div class="fs-6"> REQUEST<p class="  fs-6 lead"> {{appeal.request}}</p></div>
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-5">
 
-<a href="{% url 'DonorviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+        <h2 class="fw-bold mb-4 textpink text-uppercase">
+            Request Details
+        </h2>
 
-{% if appeal.status != 'donated' %}
-        <a href="{% url 'mpesaPayement' appeal.pk %}">Donate</a>
-    {% else %}
-        <span>Already Donated</span>
-    {% endif %}
+        <div class="mb-3">
+            <label class="fw-bold textpurple">Name of Applicant:  <div class="textpink">{{ appeal.user.username }}</div> </label>
+         
+        </div>
 
-<!-- <a href="{% url 'beneficiaryupdateRequest' appeal.id %}" class="text-decoration-none text-light badge bg-warning">Donate</a> -->
+        <div class="mb-3">
+            <label class="fw-bold textpurple">Request:</label>
+            <p class="fs-6 textpurple">{{ appeal.request }}</p>
+        </div>
 
+        <div class="d-flex gap-3 mt-4">
 
+            <a href="{% url 'DonorviewRequests' %}"
+               class="btn bgpurple text-light btn-outline-dark px-4 rounded-pill d-flex align-items-end ">
+                ← Go Back
+            </a>
+
+            {% if appeal.status != 'donated' %}
+                <a href="{% url 'mpesaPayement' appeal.pk %}"
+                   class="btn bgplum text-light btn-outline-dark  px-4 rounded-pill">
+                    Donate
+                </a>
+            {% else %}
+                <span class="badge  bg-secondary rounded-pill fs-6 px-3 py-2">
+                    Already Donated
+                </span>
+            {% endif %}
+        </div>
+
+    </div>
 
 </div>
+
 {% endblock %}

@@ -1,16 +1,51 @@
-{% extends 'beneficiary/main.html'%}
-
+{% extends 'beneficiary/main.html' %}
 {% block content %}
 
-<h1 class="display-5 mb-5">UPDATE YOUR REQUEST</h1>
+<div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
 
-<form action="" method="POST">
- {% csrf_token %}
- 
-    {{form.as_p}}
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg border-0 rounded-4">
 
-    <button type="submit" class="badge bg-secondary">UPDATE</button>
+      <div class="card-body p-4 p-md-5">
 
-</form>
-    
+        <div class="text-center mb-4">
+          <h2 class="fw-bold textpink mb-2">Update Your Request</h2>
+          <p class="text-muted">Make changes to your request below</p>
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">ID Number</label>
+            {{ form.idNumber }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Phone Number</label>
+            {{ form.PhoneNumber }}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Your Request</label>
+            {{ form.request }}
+          </div>
+
+          <button type="submit" class="btn bgpink btn-outline-dark text-light w-100 py-2 rounded-pill fw-semibold">
+            UPDATE REQUEST
+          </button>
+
+        </form>
+        <div class="text-center mt-3">
+          <a href="{% url 'beneficiaryreadRequests' %}" 
+             class="btn bgpink btn-outline-dark text-light w-100 py-2 rounded-pill fw-semibold">
+            ← Go Back to Requests
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 {% endblock %}

@@ -181,3 +181,6 @@ def donorDonationHistory(request):
 @role_required('donor')
 def donorPendingApproval(request):
     return render(request, 'Donor/waitingApproval.html')
+
+def aboutUs (request):
+    return render (request ,'Donor/aboutUs.html' )

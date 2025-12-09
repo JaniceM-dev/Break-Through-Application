@@ -1,17 +1,97 @@
-{% extends 'beneficiary/main.html'%}
+{% extends 'beneficiary/main.html' %} {% load static %} {% block content %}
 
-{% block content %}
+<section class="min-vh-100 d-flex align-items-center bg-light">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <div>
+              <h1 class="fw-bold" style="color: #aa336a">
+                <img
+                  src="{% static 'logo.svg' %}"
+                  alt=""
+                  width="50"
+                  class="me-1"
+                />BREAKTHROUGH
+              </h1>
+              <h3 class="mt-2 me-1">
+                Welcome, <span class="fw-bold">{{ user.username }}</span>! 💖
+              </h3>
 
+              <small class="text-muted">This is Your dashboard</small>
+            </div>
+          </div>
 
-<h1>BREAKTHROUGH</h1>
+          <p class="text-muted mb-5">
+            Thank you for choosing BreakThrough. Where you are valued, Loved and Appreciated . You can make requests for assistance by clicking the button below or track the ones you have already
+            submitted. Rest assured that your personal information will remain
+            confidential and that Breakthrough will ensure that you get the assistance you need.
+          </p>
 
-<h2> WELCOME {{user.username}}! </h2>
-<h2 class="fs-6 mt-4">WANT TO MAKE A REQUEST?</h2>
-<button class="btn btn-success mb-5"><a href="{% url 'beneficiarymakeRequest'%}" class="text-decoration-none text-light fs-6 " >REQUEST</a></button>
- <br>
-<button class="btn btn-primary mb-5"><a href="{% url 'beneficiaryreadRequests'%}" class="text-decoration-none text-light fs-6 " > SEE ALL REQUESTS</a>
-</button>
-<br>
-<button class="btn btn-success"><a href="{% url 'beneficiarylogout' %}" class="text-decoration-none text-light"> LOG OUT</a></button> 
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                  <h5 class="fw-bold mb-3">Request Assistance</h5>
+                  <p class="text-muted small">
+                    Submit a request and connect with accredited donors.
+                  </p>
+                  <a
+                    href="{% url 'beneficiarymakeRequest' %}"
+                    class="btn bgpink text-light rounded-pill btn-outline-dark w-100"
+                  >
+                    Make Request
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                  <h5 class="fw-bold mb-3">My Requests</h5>
+                  <p class="text-muted small">
+                    View and track all your submitted requests.
+                  </p>
+                  <a
+                    href="{% url 'beneficiaryreadRequests' %}"
+                    class="btn bgpink text-light rounded-pill btn-outline-dark w-100 mt-4"
+                  >
+                    View Requests
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-end mt-5">
+            <a
+              href="{% url 'beneficiarylogout' %}"
+              class="btn btn-outline-danger bgpink text-light rounded-pill px-4"
+            >
+              Log Out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="mt-5 p-4 rounded-3 shadow-sm bg-light text-center">
+      <h4 class="fw-bold">  ❤️ Remember {{user.username }} , we've got you ❤️</h4>
+      <p class="mt-2 mb-0 ">
+         Please know that you are
+            not alone. Whatever challenges you are facing, we are here to walk
+            this journey with you. Our organization is committed to supporting
+            you with honesty, compassion, and respect. You can trust that we
+            will do everything we can to help lighten your burden and guide you
+            towards a brighter future. Your dreams matter, and together, we will
+            work to make them a reality. If you ever feel overwhelmed, remember
+            that you have a caring community standing by your side — ready to
+            help, ready to listen, and ready to support you every step of the
+            way.
+      </p>
+  </div>
+  </div>
+</section>
 
 {% endblock %}

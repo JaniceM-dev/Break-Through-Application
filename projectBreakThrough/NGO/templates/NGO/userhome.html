@@ -1,18 +1,60 @@
-{% extends 'NGO/main.html'%}
-
+{% extends 'NGO/main.html' %}
+{% load static %}
 {% block content %}
 
+<div class="container mt-5 pt-3">
 
-<h1>BREAKTHROUGH</h1>
-<h2> WELCOME {{user.username}}! </h2>
+    
+    <div class="text-center mb-4">
+        <h1 class="fw-bold" style="color:#aa336a;"> <img src="{% static 'logo.svg' %}" alt="" width="50" class="me-2">BREAKTHROUGH</h1>
+        <h3 class="mt-3">Welcome, <span class="fw-bold">{{ user.username }}</span>! 👋</h3>
+        <p class="text-muted mt-2 fs-5">
+            Manage requests, donors, and donations all in one place.
+        </p>
+    </div>
 
-<h2>
-    <a href="{% url 'NGOviewRequests' %}"> SEE REQUESTS. </a>
-</h2>
+    
+    <div class="row g-4 justify-content-center mt-4">
 
- <a href="{% url 'NGOviewDonations' %}"> VIEW DONATIONS. </a>
+     
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4 text-center h-100"
+                 style="border-radius: 18px;">
+                <h4 class="fw-bold mb-3" style="color:#aa336a;">Requests</h4>
+                <p class="text-muted">View all pending and approved requests.</p>
+                <a href="{% url 'NGOviewRequests' %}" 
+                   class="btn bgpink btn-outline-dark text-light rounded-pill px-4 mt-auto">
+                    SEE REQUESTS
+                </a>
+            </div>
+        </div>
 
-<a href="{% url 'NGOlogout' %}"> LOG OUT?</a>
+       
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4 text-center h-100"
+                 style="border-radius: 18px;">
+                <h4 class="fw-bold mb-3" style="color:#aa336a;">Donations</h4>
+                <p class="text-muted">See all donations made by accredited donors.</p>
+                <a href="{% url 'NGOviewDonations' %}" 
+                   class="btn bgpink btn-outline-dark text-light rounded-pill px-4 mt-auto">
+                    VIEW DONATIONS
+                </a>
+            </div>
+        </div>
 
-<a href="{% url 'NGOviewDonors' %}">VIEW DONORS</a>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-4 text-center h-100"
+                 style="border-radius: 18px;">
+                <h4 class="fw-bold mb-3" style="color:#aa336a;">Donors</h4>
+                <p class="text-muted">Get to see all donors and approve them if qualified.</p>
+                <a href="{% url 'NGOviewDonors' %}" 
+                   class="btn bgpink btn-outline-dark text-light rounded-pill px-4 mt-auto">
+                    VIEW DONORS
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

@@ -1,67 +1,91 @@
-<nav class="navbar navbar-expand-lg bg-success">
-  <div class="container-fluid">
+{% load static %}
+<nav class="navbar navbar-expand-lg bgpink py-2">
+  <div class="container">
 
-       {% if user.is_authenticated %}
-    <a class="navbar-brand" href="{% url 'NGOuserHome'%}">BREAKTHROUGH</a>
-       {% else %}
-    <a class="navbar-brand" href="{% url 'NGOhome'%}">BREAKTHROUGH</a>
-       {% endif %}
+    {% if request.user.is_authenticated %}
+      <a class="navbar-brand" href="{% url 'NGOuserHome' %}">
+        <img src="{% static 'logo.svg' %}" alt="Logo" width="40">
+      </a>
+    {% else %}
+      <a class="navbar-brand" href="{% url 'NGOhome' %}">
+        <img src="{% static 'logo.svg' %}" alt="Logo" width="40">
+      </a>
+    {% endif %}
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'NGOuserHome'%}">Home</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'NGOviewRequests' %}">Requests </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'NGOviewDonations' %}"> Donations </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'NGOviewDonors' %}"> Donors </a>
-        </li>
+
+
+      <ul class="navbar-nav me-auto align-items-lg-center">
+
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOuserHome' %}">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOviewRequests' %}">Requests</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOviewDonations' %}">Donations</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOviewDonors' %}">Donors</a>
+          </li>
 
         {% else %}
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'NGOhome'%}">Home</a>
-         {% endif %}
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
-        </li>
-
-
-        {% if user.is_authenticated %}
-      
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'NGOcontactUs' %}">Contact Us</a>
-        </li>
-        <li class="nav-item">
-          <span class="nav-link text-light">Hello, {{ user.username }}</span>
-      </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link bg-light rounded-2 text-center" href="{% url 'NGOlogout' %}">LOG OUT</a>
-        </li>
-        {% else %}
-       <div class=" col col-12 col-lg d-flex gap-5">
-         <li class="nav-item">
-          <a class="nav-link mb-3 bg-light rounded-5 text-center" href="{% url 'NGOlogin' %}">LOG IN</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  bg-light rounded-5 text-center" href="{% url 'NGOregister' %}">REGISTER</a>
-        </li>
-       </div>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOhome' %}">Home</a>
+          </li>
         {% endif %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'NGOaboutUs' %}">About Us</a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'NGOcontactUs' %}">Contact Us</a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <ul class="navbar-nav ms-lg-auto align-items-lg-center gap-2 mt-3 mt-lg-0">
+
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <span class="nav-link text-light">Welcome  {{ user.username }}</span>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link bg-light rounded-2 text-dark btn btn-light btn-lg rounded-pill px-5"
+               href="{% url 'NGOlogout' %}">
+              LOG OUT
+            </a>
+          </li>
+
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link bg-light rounded-2 text-dark px-3 button"
+               href="{% url 'NGOlogin' %}">
+              LOG IN
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link bg-light rounded-2 text-dark px-3 button"
+               href="{% url 'NGOregister' %}">
+              REGISTER
+            </a>
+          </li>
+        {% endif %}
+
+      </ul>
 
     </div>
   </div>

@@ -1,12 +1,37 @@
-{% extends 'Donor/main.html'%}
+{% extends 'Donor/main.html' %}
 
 {% block content %}
-<p>ARE YOU SURE YOU WANT TO LOG OUT?</p>
 
-<a href="{% url 'DonoruserHome' %}"> GO BACK?</a>
+<div class="container py-5">
 
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
 
-<a href="{% url 'Donorlogingout' %}"> LOG OUT.</a>
+      <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
 
+        <h4 class="mb-4 fw-bold text-uppercase">
+          Are you sure you want to log out?
+        </h4>
+
+        <div class="d-flex justify-content-center gap-3">
+
+          <a href="{% url 'DonoruserHome' %}" 
+             class="btn btn-outline-dark bgpink rounded-pill text-light  px-4">
+            Go Back
+          </a>
+
+          <a href="{% url 'Donorlogingout' %}" 
+             class="btn btn-outline-danger bgpink rounded-pill text-light  px-4">
+            Log Out
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
 
 {% endblock %}

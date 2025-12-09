@@ -126,7 +126,7 @@ def viewDonors(request):
 @login_required(login_url='NGOlogin')
 @role_required('ngo')
 def authorizeRequest(request, pk):
-    appeal = get_object_or_404(Appeal, id=pk)
+    appeal = Appeal.objects.get(id=pk)
     appeal.is_authorized = True
     appeal.status = 'authorized' 
     appeal.save()
@@ -135,7 +135,8 @@ def authorizeRequest(request, pk):
  
 def viewDonor(request , pk):
     donor =User.objects.get(id=pk)
-    return render(request, 'NGO/donor.html', {'donor': donor})
+    context = {'donor': donor}
+    return render(request, 'NGO/donor.html', context )
    
 @login_required (login_url='NGOlogin')
 @role_required('ngo')
@@ -144,4 +145,7 @@ def authorizeDonor(request,pk):
     donor.profile.is_authorized = True
     donor.profile.save()
     return redirect('NGOviewDonors')
+
+def aboutUs(request):
+    return render (request, 'NGO/aboutUs.html')
 

@@ -1,39 +1,65 @@
-{% extends 'beneficiary/main.html'%}
+{% extends 'Donor/main.html' %}
 
 {% block content %}
 
-<!-- {% for donation in donations %}
+<div class="container mt-4">
 
-<h1> {{ donation.appeal.name }}</h1>
-<h2>>{{ donation.amount }}</h2>
-<h3>{{ donation.appeal.status }}</h3>
-<h4>{{ donation.created_at }}</h4>
+    <h2 class="fw-bold mb-4 textpink">My Donations</h2>
 
-{% endfor %} -->
-<h2>My Donations</h2>
-<table>
-    <tr>
-        <th>Appeal</th>
-        <th>Request</th>
-        <th>Amount</th>
-        <th>Status</th>
-        <th>Date</th>
-    </tr>
-    {% for donation in donations %}
-    <tr>
-        <td>{{ donation.appeal.name }}</td>
-        <td>{{donation.appeal.request}}</td>
-        <td>{{ donation.amount }}</td>
-        <td>{{ donation.appeal.status }}</td>
-        <td>{{ donation.created_at }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    {% if donations %}
+       
+        <div class="alert alert-success shadow-sm">
+            ❤️ <strong>Thank you!</strong> Your generosity is making a real difference.  
+            Below are the donations you have made.
+        </div>
 
-<a href="{% url 'DonorviewRequests'%}" class="text-decoration-none text-light badge bg-success">Go Back?</a>
+        <div class="row g-4">
+            {% for donation in donations %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm border-0 h-100" style="border-radius: 16px;">
+                    <div class="card-body">
 
+                        <h5 class=" fs-5 textpink fw-bold card-title">
+                            Donation to: <div class="textpurple fw-bold">{{ donation.appeal.user.username }}</div>
+                        </h5>
 
+                        <p class="card-text  small">
+                           Request: <br> "{{ donation.appeal.request }}"
+                        </p>
 
+                        <hr>
+
+                        <p class="mb-1">
+                            <strong>Amount Donated:</strong> Ksh {{ donation.amount }}
+                        </p>
+
+                        <p class="mb-1">
+                            <strong>Status:</strong> 
+                            <span class="badge bg-success">{{ donation.appeal.status }} by : {{user.username}} </span>
+                        </p>
+
+                        <p class="text-muted small">
+                            {{ donation.created_at }}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+       
+        <div class="alert alert-warning shadow-sm">
+            😔 You have not made any donations yet.  
+            When you do, they will appear here.
+        </div>
+    {% endif %}
+
+    <a href="{% url 'DonorviewRequests' %}" class="btn bgpink rounded-pill text-light btn-outline-dark mt-4">
+        Go Back
+    </a>
 
 </div>
+
 {% endblock %}

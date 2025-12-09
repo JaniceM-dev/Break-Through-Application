@@ -11,7 +11,7 @@ class CustomRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "password1", "password2", "role"]
+        fields = ["username", "password1", "password2", "role" , 'email']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -25,17 +25,66 @@ class CustomRegistrationForm(UserCreationForm):
             )
 
         return user
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})
 
 
 class  AppealForm(ModelForm):
     class Meta:
         model =  Appeal
-        fields = '__all__'
-        exclude = ['user']
+        fields = [
+             'idNumber',
+            'PhoneNumber',
+            'request'
+        ]
+
+        widgets = {
+            'idNumber': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your ID number',
+                'required': True
+            }),
+            'PhoneNumber': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your phone number',
+                'required': True
+            }),
+            'request': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 6,
+                'placeholder': 'Describe your request in detail...',
+                'required': True
+            }),
+        }
+
+        
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['idNumber'].required = True
+            self.fields['PhoneNumber'].required = True
+            self.fields['request'].required = True
 
 
 class MessageForm(ModelForm):
     class Meta:
         model =  Message
         fields = '__all__'
-        exclude =  exclude = ['user', 'role', 'created_at', 'updated_at']
+        exclude = ['user', 'role', 'created_at', 'updated_at']
+
+        widgets = {
+                    'email': forms.EmailInput(attrs={
+                        'class': 'form-control rounded-pill',
+                        'placeholder': 'Enter your email',
+                        'required': True
+                    }),
+                    'message': forms.Textarea(attrs={
+                        'class': 'form-control rounded-3',
+                        'placeholder': 'Type your message here...',
+                        'rows': 5,
+                        'required': True
+                    }),
+                }        
+  

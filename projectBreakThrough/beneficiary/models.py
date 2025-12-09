@@ -14,6 +14,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
+    
+
 
 class Appeal(models.Model):
 
@@ -26,9 +28,7 @@ class Appeal(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     idNumber = models.IntegerField()
-    name = models.CharField(max_length=255)
     PhoneNumber = models.IntegerField()
-    Email = models.EmailField()
     request = models.CharField(max_length=1000)  
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     created_at = models.DateField(auto_now_add=True)
@@ -36,7 +36,7 @@ class Appeal(models.Model):
     is_authorized = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name   
+        return self.user   
     
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

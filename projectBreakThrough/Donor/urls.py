@@ -14,6 +14,7 @@ urlpatterns = [
     path('viewOneRequest/<str:pk>' , views.viewOneRequest , name = 'DonorviewOneRequest'),
     path('contactUs' , views.contactUs , name = 'DonorcontactUs') ,
     path('donorDonationHistory' , views.donorDonationHistory , name = 'donorDonationHistory') ,
-    path('donorPendingApproval' , views.donorPendingApproval , name = 'donorPendingApproval') 
+    path('donorPendingApproval' , views.donorPendingApproval , name = 'donorPendingApproval'), 
+    path('aboutUs' , views.aboutUs , name = 'donoraboutUs') 
 ]
     
