@@ -18,8 +18,8 @@
             </p>
 
             <hr>
-
-            {% for appeal in appeals %}
+            
+            {% for appeal in appeals %}     
                 <div class="p-3 mb-3 border rounded-3 bg-light">
 
                     <div class="fw-bold  ">Name:
@@ -58,7 +58,7 @@
                 <p class="text-center text-muted fs-5">There are no requests available at the moment. Please Keep checking for any updates. Thankyou </p>
 
             {% endfor %}
-
+       
             <div class="text-center mt-4">
                 <a href="{% url 'DonoruserHome' %}" class="btn bgpink text-light btn-outline-dark px-4 rounded-pill">
                     Go Back
