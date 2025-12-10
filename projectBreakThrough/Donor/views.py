@@ -139,7 +139,7 @@ def mpesaPayement( request , id = None , pk = None):
     
 # Create your views here.
 def viewRequests(request):
-    appeals = Appeal.objects.filter(user__profile__role='beneficiary')
+    appeals = Appeal.objects.filter(user__profile__role='beneficiary', is_authorized=True )
     context = {'appeals': appeals}
     return render (request, 'Donor/requests.html' , context)
 
