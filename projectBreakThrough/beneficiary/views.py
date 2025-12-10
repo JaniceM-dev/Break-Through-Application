@@ -134,7 +134,7 @@ def updateRequest(request , pk):
         form = AppealForm (request.POST, instance=appeal)
         if form.is_valid():
             form.save()
-            return redirect ('readRequests')
+            return redirect ('beneficiaryreadRequests')
     context = {'form': form}
     return render (request, 'beneficiary/updateRequest.html' , context)
 

@@ -36,7 +36,7 @@ class Appeal(models.Model):
     is_authorized = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user   
+        return self.user.username   
     
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
